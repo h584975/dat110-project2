@@ -1,7 +1,6 @@
 package no.hvl.dat110.iotsystem;
 
 import no.hvl.dat110.client.Client;
-import no.hvl.dat110.common.TODO;
 
 public class TemperatureDevice {
 
@@ -21,10 +20,20 @@ public class TemperatureDevice {
 		// - disconnect from the broker
 
 		// TODO - end
-
+		
+		Client sensor = new Client("SENSOR", Common.BROKERHOST, Common.BROKERPORT);
+		boolean connected = sensor.connect();
+		
+		if(connected) {
+			for(int i = 0; i < COUNT; i++) {
+				
+				sensor.publish(Common.TEMPTOPIC, ""+sn.read());
+				sensor.disconnect();
+				
+			}	
+		}else {
+			System.out.println("Sensor could not connect");
+		}
 		System.out.println("Temperature device stopping ... ");
-
-		throw new UnsupportedOperationException(TODO.method());
-
 	}
 }

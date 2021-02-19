@@ -26,9 +26,27 @@ public class DisplayDevice {
 		
 		// TODO - END
 		
-		System.out.println("Display stopping ... ");
+		Client display = new Client("SENSOR", Common.BROKERHOST, Common.BROKERPORT);
+		boolean connected = display.connect();
 		
-		throw new UnsupportedOperationException(TODO.method());
+		if(connected) {
+			String topic = Common.TEMPTOPIC;
+			
+			display.createTopic(topic);
+			display.subscribe(topic);
+		
+			for(int i = 0; i < COUNT; i++) {
+				
+				Message msg = display.receive();
+				System.out.println(msg.toString());
+			}
+			
+			display.unsubscribe(topic);
+			display.disconnect();
+		}else {
+			System.out.println("Sensor could not connect");
+		}
+		System.out.println("Display stopping ... ");
 		
 	}
 }
