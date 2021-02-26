@@ -27,13 +27,12 @@ public class TemperatureDevice {
 		if(connected) {
 			for(int i = 0; i < COUNT; i++) {
 				
-				sensor.publish(Common.TEMPTOPIC, ""+sn.read());
-				sensor.disconnect();
-				
+				sensor.publish(Common.TEMPTOPIC, ""+sn.read());	
 			}	
 		}else {
 			System.out.println("Sensor could not connect");
 		}
+		sensor.disconnect();
 		System.out.println("Temperature device stopping ... ");
 	}
 }
