@@ -26,7 +26,7 @@ public class DisplayDevice {
 		
 		// TODO - END
 		
-		Client display = new Client("SENSOR", Common.BROKERHOST, Common.BROKERPORT);
+		Client display = new Client("DISPLAY", Common.BROKERHOST, Common.BROKERPORT);
 		boolean connected = display.connect();
 		
 		if(connected) {
@@ -37,10 +37,11 @@ public class DisplayDevice {
 		
 			for(int i = 0; i < COUNT; i++) {
 				
+				System.out.println("test");
 				Message msg = display.receive();
+				
 				System.out.println(msg.toString());
 			}
-			
 			display.unsubscribe(topic);
 			display.disconnect();
 		}else {
