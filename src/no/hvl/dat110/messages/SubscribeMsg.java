@@ -12,7 +12,7 @@ public class SubscribeMsg extends Message {
 	
 	private String topic;
 	
-	public SubscribeMsg(String topic, String user) {
+	public SubscribeMsg(String user, String topic) {
 		super(MessageType.SUBSCRIBE, user);
 		this.topic = topic;		
 	}
