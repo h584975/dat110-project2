@@ -168,13 +168,16 @@ public class Dispatcher extends Stopable {
 		
 		Set<String> subscribers = storage.getSubscribers(topic);
 		
-		for(String subscriber: subscribers) {
+		if(subscribers != null) {
 			
-			ClientSession session = storage.getSession(subscriber);
-			
-			if(session != null) {
+			for(String subscriber: subscribers) {
 				
-				session.send(msg);
+				ClientSession session = storage.getSession(subscriber);
+				
+				if(session != null) {
+					
+					session.send(msg);
+				}
 			}
 		}
 	}
