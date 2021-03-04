@@ -178,8 +178,11 @@ public class Dispatcher extends Stopable {
 					
 					session.send(msg);
 				}
+				
 			}
 			
 		}
+		
 	}
+	
 }
